@@ -1,7 +1,7 @@
 .calculator {
     width: 20rem;
     height: 30rem;
-    background-color: lightcyan;
+    background-color: lightgray;
     display: grid;
     padding: 1%;
     position: absolute;
@@ -31,21 +31,25 @@
   }
   .calculator-keypad {
     padding-top: 0.3rem;
-    background-color: lightblue;
+    background-color: lightgrey;
     display: grid;
     grid-template-columns: repeat(4, 5rem);
     grid-template-rows: repeat(5, 5rem);
     grid-template-areas: "keys-function keys-function keys-function keys-operators" "keys-numbers keys-numbers keys-numbers keys-operators" "keys-numbers keys-numbers keys-numbers keys-operators" "keys-numbers keys-numbers keys-numbers keys-operators" "keys-numbers keys-numbers keys-numbers keys-operators";
   }
   .calculator-input {
-    border-color: black;
-    border: ridge;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
     text-align: right;
+    margin: 5px;
     padding-right: 10%;
     font-weight: bold;
     font-size: xx-large;
+    background-color: white;
   }
   .result {
     min-height: 3rem;
-    color: #666666;
+    color: white;
   }
