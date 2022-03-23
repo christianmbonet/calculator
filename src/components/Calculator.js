@@ -1,4 +1,3 @@
-import React from "react";
 import CalculatorKey from "./CalculatorKey";
 import "./Calculator.css";
 import React, { useState , useEffect} from "react";
@@ -8,9 +7,49 @@ function Calculator() {
 const [prevValue, setPrevValue] = useState(0);
 const [nextValue, setNextValue] = useState("");
 const [op, setOp] = useState(null);
-const [result, setResult] = useState("0");
 
 useEffect(() => {}, [op, nextValue, prevValue]);
+
+const CalculatorOperations = {
+    "/": (firstValue, secondValue) => firstValue / secondValue,
+    "*": (firstValue, secondValue) => firstValue * secondValue,
+    "+": (firstValue, secondValue) => firstValue + secondValue,
+    "-": (firstValue, secondValue) => firstValue - secondValue,
+    "=": (firstValue, secondValue) => secondValue,
+  };
+
+const performOperation = () => {
+    let temp = CalculatorOperations[op](
+      parseFloat(prevValue),
+      parseFloat(nextValue)
+    );
+    setOp(null);
+    setNextValue(String(temp));
+    setPrevValue(null);
+  };
+
+  const handleNum = (number) => {
+    setNextValue(nextValue === "0" ? String(number) : nextValue + number);
+  };
+
+  const insertDot = () => {
+    if (!/\./.test(nextValue)) {
+      setNextValue(nextValue + ".");
+    }
+  };
+  const percentage = () => {
+    setNextValue(parseFloat(nextValue) / 100);
+    if (prevValue && nextValue === "") {
+      setPrevValue(parseFloat(prevValue) / 100);
+    }
+  };
+  const changeSign = () => {
+    setNextValue(parseFloat(nextValue) * -1);
+  };
+  const clearData = () => {
+    setNextValue("0");
+    setPrevValue(0);
+  };
 
 const handleOperation = (value) => {
     if (Number.isInteger(value)) {
@@ -38,12 +77,10 @@ const handleOperation = (value) => {
     }
   };
 
-
-
   return (
     <div className="calculator">
       <div className="calculator-input">
-        <div className="result">{result} </div>
+        <div className="result">{nextValue} </div>
       </div>
       <div className="calculator-keypad">
         <div className="keys-function">
