@@ -59,7 +59,7 @@ const handleOperation = (value) => {
       if (op === null) {
         setOp(value);
         setPrevValue(nextValue);
-        setNextValue("");
+        setNextValue("0");
       }
       if (op) {
         setOp(value);
